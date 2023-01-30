@@ -1,17 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+import './main.scss';
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+import Home from './pages/Home';
+import Userpage from './pages/Userpage';
+import Settings from './pages/Settings';
+import Account from './pages/Account';
+
+
+import {BrowserRouter, Routes ,Route } from 'react-router-dom';
+import * as serviceWorker from './serviceWorker';
+
+class Root extends Component{
+  render(){
+      return(
+          <BrowserRouter basename={'/'}>
+              <Routes>
+              <Route path='/' element={<Home/>} />
+              <Route path='/userpage' element={<Userpage/>} />
+              <Route path='/defaultsettings' element={<Settings/>} />
+              <Route path='/accountinformation' element={<Account/>} />
+              </Routes>
+          </BrowserRouter>
+      )
+  }
+}
+
+ReactDOM.render(<Root/>, document.getElementById('root'));
+serviceWorker.register();
